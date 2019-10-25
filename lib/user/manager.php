@@ -5,13 +5,13 @@ namespace A2c\Rights\User;
 use A2c\Rights\Rights;
 
 /**
- * Class manager
+ * Class Manager
  *
  * Может читать и записывать
  *
  * @package A2c\Rights\User
  */
-class manager extends User
+class Manager extends User
 {
     /**
      * manager constructor.

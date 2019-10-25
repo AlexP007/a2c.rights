@@ -9,7 +9,7 @@ use A2c\Rights\Rights;
  *
  * Базовый класс
  *
- * @package A2c\User\User
+ * @package A2c\Rights\User
  */
 abstract class User
 {
