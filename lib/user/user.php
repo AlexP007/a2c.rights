@@ -3,6 +3,7 @@
 namespace A2c\Rights\User;
 
 use A2c\Rights\Rights;
+use CUser;
 
 /**
  * Class User
@@ -14,6 +15,10 @@ use A2c\Rights\Rights;
 abstract class User
 {
     private $rights;
+    private $id = null;
+    private $groups = null;
+    private $name;
+    private $reflection;
 
     /**
      * User constructor.
@@ -25,7 +30,10 @@ abstract class User
      */
     public function __construct(Rights $rights)
     {
+        $this->reflection = new \ReflectionClass($this);
+        $this->name = $this->reflection->getName();
         $this->rights = $rights;
+        $this->id = CUser::GetID();
     }
 
     /**
@@ -50,5 +58,18 @@ abstract class User
     public function couldRead()
     {
         return $this->rights->read;
+    }
+
+    public function getGroups()
+    {
+        if (!$this->groups)
+            $this->groups = CUser::GetUserGroup($this->id);
+
+        return $this->groups;
+    }
+
+    public function getName()
+    {
+        return $this->name;
     }
 }
