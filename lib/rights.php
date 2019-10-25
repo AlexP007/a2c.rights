@@ -1,6 +1,6 @@
 <?php
 
-namespace A2c\Rights\Rights;
+namespace A2c\Rights;
 
 /**
  * Class Rights
@@ -32,5 +32,17 @@ class Rights
         }
         $this->edit = $edit;
         $this->read = $read;
+    }
+
+    /**
+     * Магический метод чтобы
+     * удобно доставать свойства
+     *
+     * @param $property
+     * @return mixed
+     */
+    public function __get($property)
+    {
+        return $this->$property;
     }
 }
