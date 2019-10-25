@@ -31,7 +31,7 @@ abstract class User
     public function __construct(Rights $rights)
     {
         $this->reflection = new \ReflectionClass($this);
-        $this->name = $this->reflection->getName();
+        $this->name = $this->reflection->getShortName();
         $this->rights = $rights;
         $this->id = CUser::GetID();
     }
