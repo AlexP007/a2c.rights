@@ -1,6 +1,6 @@
 <?php
 
-namespace A2c\User\User;
+namespace A2c\Rights\User;
 
 use A2c\Rights\Rights;
 
