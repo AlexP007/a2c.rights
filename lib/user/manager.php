@@ -11,7 +11,7 @@ use A2c\Rights\Rights;
  *
  * @package A2c\Rights\User
  */
-class manager extends basicuser
+class manager extends User
 {
     /**
      * manager constructor.

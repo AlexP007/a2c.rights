@@ -5,18 +5,18 @@ namespace A2c\Rights\User;
 use A2c\Rights\Rights;
 
 /**
- * Class basicuser
+ * Class User
  *
  * Базовый класс
  *
  * @package A2c\User\User
  */
-abstract class basicuser
+abstract class User
 {
     private $rights;
 
     /**
-     * basicuser constructor.
+     * User constructor.
      *
      * В конструкторе обязательно
      * должны быть определны права
