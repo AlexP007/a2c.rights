@@ -45,7 +45,7 @@ class EventFactory
         $editor->edit();
     }
 
-    public static function contextMenuEditor($menu)
+    public static function contextMenuEditor(&$menu)
     {
         // Получим юзера и группы
         $userId = CUser::GetId();
@@ -56,6 +56,6 @@ class EventFactory
         // Получим эдитора
         $editor = new ContextMenuEditor($menu, $user);
         // Запускаем
-        $editor->edit();
+        $menu = $editor->edit();
     }
 }

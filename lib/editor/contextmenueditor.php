@@ -24,16 +24,18 @@ class ContextMenuEditor extends Editor
 
                 foreach ($elt['MENU'] as $item) {
                     if (!isset($item['TEXT'])) {
-                        return;
+                        continue;
                     }
                     $method = $this->getDictionary($item['TEXT']);
                     if (method_exists($this->user, $method) && !$this->user->$method()) {
-                        return;
+                        continue;
                     }
                     $result[] = $item;
                 }
                 $elt['MENU'] = $result;
             }
         });
+
+        return $this->data;
     }
 }
