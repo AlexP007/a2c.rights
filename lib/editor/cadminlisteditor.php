@@ -6,39 +6,44 @@ use A2c\Rights\User;
 use CAdminList;
 use CAdminListRow;
 
-class CAdminListEditor extends ListEditor
+class CAdminListEditor extends Editor
 {
-   public function __construct(CAdminList $list, User $user)
-   {
-       parent::__construct($list, $user);
-   }
+    protected $dictionary = array(
+        'Изменить' => 'couldEdit',
+        'Удалить' => 'couldDelete',
+    );
 
-   public function edit()
-   {
-       $rows = $this->list->aRows;
+    public function __construct(CAdminList $list, User $user)
+    {
+        parent::__construct($list, $user);
+    }
 
-       foreach ($rows as $row) {
-           $this->modify($row);
-       }
-   }
+    public function edit()
+    {
+        $rows = $this->data->aRows;
 
-   private function modify(CAdminListRow $row)
-   {
-       $actions = $row->aActions;
-       $result = array();
+        foreach ($rows as $row) {
+            $this->modify($row);
+        }
+    }
 
-       foreach ($actions as $action) {
-           if (!isset($action['TEXT']) ) {
-               continue;
-           }
+    private function modify(CAdminListRow $row)
+    {
+        $actions = $row->aActions;
+        $result = array();
 
-           $method = $this->dictionary[$action['TEXT']];
-           if (method_exists($this->user, $method) && !$this->user->$method() ) {
-               continue;
-           }
-           $result[] = $action;
-       }
+        foreach ($actions as $action) {
+            if (!isset($action['TEXT']) ) {
+                continue;
+            }
 
-       $row->aActions = $result;
-   }
+            $method = $this->getDictionary($action['TEXT']);
+            if (method_exists($this->user, $method) && !$this->user->$method() ) {
+                continue;
+            }
+            $result[] = $action;
+        }
+
+        $row->aActions = $result;
+    }
 }
