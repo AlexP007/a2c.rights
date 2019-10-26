@@ -4,6 +4,7 @@ namespace A2c\Rights;
 
 use Bitrix\Main\EventManager;
 use A2c\Rights\Editor\CAdminListEditor;
+use A2c\Rights\Editor\ContextMenuEditor;
 use CUser;
 
 /**
@@ -40,6 +41,20 @@ class EventFactory
 
         // Получим эдитора
         $editor = new CAdminListEditor($list, $user);
+        // Запускаем
+        $editor->edit();
+    }
+
+    public static function contextMenuEditor($menu)
+    {
+        // Получим юзера и группы
+        $userId = CUser::GetId();
+        $userGroups = CUser::GetUserGroup($userId);
+
+        $user = new User($userId, $userGroups);
+
+        // Получим эдитора
+        $editor = new ContextMenuEditor($menu, $user);
         // Запускаем
         $editor->edit();
     }

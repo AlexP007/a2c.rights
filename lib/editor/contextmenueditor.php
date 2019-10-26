@@ -2,12 +2,19 @@
 
 namespace A2c\Rights\Editor;
 
+use A2c\Rights\User;
+
 class ContextMenuEditor extends Editor
 {
     protected $dictionary = array(
         'Добавить Товар' => 'couldEdit',
         'Удалить Товар' => 'couldDelete',
     );
+
+    public function __construct(array $data, User $user)
+    {
+        parent::__construct($data, $user);
+    }
 
     public function edit()
     {
