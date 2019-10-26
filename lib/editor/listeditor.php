@@ -13,6 +13,11 @@ abstract class ListEditor
     protected $list;
     protected $user;
 
+    protected $dictionary = array(
+        'Изменить' => 'couldEdit',
+        'Удалить' => 'couldDelete',
+    );
+
     public function __construct($list, User $user)
     {
         $this->list = $list;

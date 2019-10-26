@@ -28,10 +28,11 @@ class CAdminListEditor extends ListEditor
        $result = array();
 
        foreach ($actions as $action) {
-           if (!isset($action['ICON']) ) {
+           if (!isset($action['TEXT']) ) {
                continue;
            }
-           $method = 'could' . ucfirst($action['ICON']);
+
+           $method = $this->dictionary[$action['TEXT']];
            if (method_exists($this->user, $method) && !$this->user->$method() ) {
                continue;
            }
