@@ -6,32 +6,35 @@ namespace A2c\Rights;
  * Class Rights
  *
  * Этот класс хранит в себе права
+ * и высчитает их при вплощении
  *
  * @package A2c\Rights\Rights
  */
 class Rights
 {
-    private $delete;
-    private $edit;
-    private $read;
+    private $delete = false;
+    private $edit = false;
+    private $read = false;
+    private $clients = false;
 
-    public function __construct(
-        bool $delete = false,
-        bool $edit = false,
-        bool $read = false
-    ) {
-        if ($delete === true ) {
-            $this->delete = $this->edit = $this->read = true;
-            return;
-        }
-        $this->delete = $delete;
+    const READ = 0b1;
+    const EDIT = 0b10;
+    const DELETE = 0b100;
+    const CLIENTS = 0b1000;
 
-        if ($edit === true ) {
-            $this->edit = $this->read = true;
-            return;
+    public function __construct(int $rights) {
+        if ($rights & self::CLIENTS) {
+            $this->clients = true;
         }
-        $this->edit = $edit;
-        $this->read = $read;
+        if ($rights & self::DELETE) {
+            $this->delete = true;
+        }
+        if ($rights & self::EDIT) {
+            $this->edit = true;
+        }
+        if ($rights & self::READ) {
+            $this->read = true;
+        }
     }
 
     /**
@@ -41,8 +44,9 @@ class Rights
      * @param $property
      * @return mixed
      */
-    public function __get($property)
+    public function __get($property):bool
     {
+        $property = strtolower(str_replace('get', '' , $property) );
         return $this->$property;
     }
 }

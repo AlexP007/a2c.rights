@@ -2,8 +2,7 @@
 
 namespace A2c\Rights\Editor;
 
-use A2c\Rights\User\User;
-use CUser;
+use A2c\Rights\User;
 
 /**
  * Class ListEditor
