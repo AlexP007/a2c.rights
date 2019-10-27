@@ -6,11 +6,6 @@ use A2c\Rights\User;
 
 class ContextMenuEditor extends Editor
 {
-    protected $dictionary = array(
-        'Добавить Товар' => 'couldEdit',
-        'Удалить Товар' => 'couldDelete',
-    );
-
     public function __construct(array $data, User $user)
     {
         parent::__construct($data, $user);
@@ -26,7 +21,10 @@ class ContextMenuEditor extends Editor
                     if (!isset($item['TEXT'])) {
                         continue;
                     }
-                    $method = $this->getDictionary($item['TEXT']);
+
+                    $method = $this->getDictionary(
+                        explode(' ', $item['TEXT'])[0]
+                    );
                     if (method_exists($this->user, $method) && !$this->user->$method()) {
                         continue;
                     }

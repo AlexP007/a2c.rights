@@ -8,11 +8,6 @@ use CAdminListRow;
 
 class CAdminListEditor extends Editor
 {
-    protected $dictionary = array(
-        'Изменить' => 'couldEdit',
-        'Удалить' => 'couldDelete',
-    );
-
     public function __construct(CAdminList $list, User $user)
     {
         parent::__construct($list, $user);

@@ -13,7 +13,10 @@ abstract class Editor
     protected $list;
     protected $user;
 
-    protected $dictionary = array();
+    protected $dictionary = array(
+        'Изменить' => 'couldEdit',
+        'Удалить' => 'couldDelete',
+    );
 
     public function __construct($data, User $user)
     {
