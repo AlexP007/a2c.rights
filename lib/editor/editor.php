@@ -14,8 +14,8 @@ abstract class Editor
     protected $user;
 
     protected $dictionary = array(
-        'Изменить' => 'couldEdit',
-        'Удалить' => 'couldDelete',
+        'изменить' => 'couldEdit',
+        'удалить' => 'couldDelete',
     );
 
     public function __construct($data, User $user)
@@ -28,6 +28,6 @@ abstract class Editor
 
     protected function getDictionary($key)
     {
-        return $this->dictionary[$key];
+        return $this->dictionary[strtolower($key)];
     }
 }

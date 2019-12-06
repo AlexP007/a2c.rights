@@ -18,11 +18,13 @@ class CAdminListEditor extends Editor
         $rows = $this->data->aRows;
 
         foreach ($rows as $row) {
-            $this->modify($row);
+            $this->modifyRow($row);
         }
+
+        $this->modifyActions();
     }
 
-    private function modify(CAdminListRow $row)
+    private function modifyRow(CAdminListRow $row)
     {
         $actions = $row->aActions;
         $result = array();
@@ -40,5 +42,25 @@ class CAdminListEditor extends Editor
         }
 
         $row->aActions = $result;
+    }
+
+    private function modifyActions()
+    {
+        $actions = $this->data->arActions;
+        $result = array();
+
+        foreach ($actions as $key => $val) {
+            if (!is_string($val) ) {
+                continue;
+            }
+
+            $method = $this->getDictionary($val);
+            if (method_exists($this->user, $method) && !$this->user->$method() ) {
+                continue;
+            }
+            $result[$key] = $val;
+        }
+
+        $this->data->arActions = $result;
     }
 }
