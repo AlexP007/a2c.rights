@@ -1,14 +1,13 @@
 <?php
 
-namespace A2c\Rights\Editor;
+namespace A2c\Rights;
 
-use A2c\Rights\User;
 
 /**
  * Class Editor
  * @package A2c\Rights\Editor
  */
-abstract class Editor
+abstract class BasicRightsChecker
 {
     protected $list;
     protected $user;
@@ -24,7 +23,7 @@ abstract class Editor
         $this->user = $user;
     }
 
-    abstract function edit();
+    abstract function run();
 
     protected function getDictionary($key)
     {

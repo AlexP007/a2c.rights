@@ -2,16 +2,17 @@
 
 namespace A2c\Rights\Editor;
 
+use A2c\Rights\BasicRightsChecker;
 use A2c\Rights\User;
 
-class ContextMenuEditor extends Editor
+class ContextMenuEditor extends BasicRightsChecker
 {
     public function __construct(array $data, User $user)
     {
         parent::__construct($data, $user);
     }
 
-    public function edit()
+    public function run()
     {
         array_walk($this->data, function (&$elt) {
             if ($elt['TEXT'] === 'Действия') {

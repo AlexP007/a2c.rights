@@ -5,6 +5,7 @@ namespace A2c\Rights;
 use Bitrix\Main\EventManager;
 use A2c\Rights\Editor\CAdminListEditor;
 use A2c\Rights\Editor\ContextMenuEditor;
+use A2c\Rights\RightsChecker\IBlockRightsChecker;
 use CUser;
 
 /**
@@ -38,7 +39,7 @@ class EventFactory
         // Получим эдитора
         $editor = new CAdminListEditor($list, $user);
         // Запускаем
-        $editor->edit();
+        $editor->run();
     }
 
     public static function contextMenuEditor(&$menu)
@@ -48,6 +49,17 @@ class EventFactory
         // Получим эдитора
         $editor = new ContextMenuEditor($menu, $user);
         // Запускаем
-        $menu = $editor->edit();
+        $menu = $editor->run();
+    }
+
+    public static function iBlockRightsChecker()
+    {
+        $user = new User();
+
+        // Получим объект проверку
+        $checker = new IBlockRightsChecker();
+        // Запускаем
+        $checker->run();
+
     }
 }

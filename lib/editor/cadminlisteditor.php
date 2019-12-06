@@ -2,18 +2,19 @@
 
 namespace A2c\Rights\Editor;
 
+use A2c\Rights\BasicRightsChecker;
 use A2c\Rights\User;
 use CAdminList;
 use CAdminListRow;
 
-class CAdminListEditor extends Editor
+class CAdminListEditor extends BasicRightsChecker
 {
     public function __construct(CAdminList $list, User $user)
     {
         parent::__construct($list, $user);
     }
 
-    public function edit()
+    public function run()
     {
         $rows = $this->data->aRows;
 
