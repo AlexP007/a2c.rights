@@ -5,6 +5,15 @@ namespace A2c\Rights\RightsChecker;
 
 use A2c\Rights\BasicRightsChecker;
 
+/**
+ * Class IBlockRightsChecker
+ *
+ * Слушает события удаления, обновления
+ * инфоблоков. Проверяет для каждого
+ * пользователя соответствующие права
+ *
+ * @package A2c\Rights\RightsChecker
+ */
 class IBlockRightsChecker extends BasicRightsChecker
 {
     public function run()
