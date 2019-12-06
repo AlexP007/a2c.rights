@@ -23,7 +23,7 @@ class IBlockRightsChecker extends BasicRightsChecker
         if ($this->user->couldDelete()) {
             return true;
         }
-        $APPLICATION->ThrowException('Вы не можете удалять элементы');
+        $APPLICATION->ThrowException('Вы не можете удалить этот элемент');
         return false;
     }
 }
