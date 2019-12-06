@@ -3,6 +3,7 @@
 namespace A2c\Rights;
 
 use Bitrix\Main\GroupTable;
+use CUser;
 
 /**
  * Class User
@@ -30,9 +31,12 @@ class User
      *
      * @param Rights $rights
      */
-    public function __construct(int $id, array $groups)
+    public function __construct()
     {
-        $this->id = $id;
+        // Получим юзера и группы
+        $this->id = CUser::GetId();
+        $groups = CUser::GetUserGroup($this->id);
+
         $rights = 0b0;
 
         foreach ($groups as $groupId) {

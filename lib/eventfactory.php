@@ -33,11 +33,7 @@ class EventFactory
 
     public static function cAdminListEditor($list)
     {
-        // Получим юзера и группы
-        $userId = CUser::GetId();
-        $userGroups = CUser::GetUserGroup($userId);
-
-        $user = new User($userId, $userGroups);
+        $user = new User();
 
         // Получим эдитора
         $editor = new CAdminListEditor($list, $user);
@@ -47,11 +43,7 @@ class EventFactory
 
     public static function contextMenuEditor(&$menu)
     {
-        // Получим юзера и группы
-        $userId = CUser::GetId();
-        $userGroups = CUser::GetUserGroup($userId);
-
-        $user = new User($userId, $userGroups);
+        $user = new User();
 
         // Получим эдитора
         $editor = new ContextMenuEditor($menu, $user);
