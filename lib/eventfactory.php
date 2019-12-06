@@ -6,7 +6,6 @@ use Bitrix\Main\EventManager;
 use A2c\Rights\Editor\CAdminListEditor;
 use A2c\Rights\Editor\ContextMenuEditor;
 use A2c\Rights\RightsChecker\IBlockRightsChecker;
-use CUser;
 
 /**
  * Class EventFactory
@@ -20,13 +19,14 @@ class EventFactory
     /**
      * Вешает обработчик события
      *
+     * @param $module
      * @param $event
      * @param $method
      */
-    public static function addEvent($event, $method)
+    public static function addEvent($module, $event, $method)
     {
         EventManager::getInstance()->addEventHandler(
-            'main',
+            $module,
             $event,
             array(self::class, $method)
         );
@@ -52,14 +52,13 @@ class EventFactory
         $menu = $editor->run();
     }
 
-    public static function iBlockRightsChecker()
+    public static function iBlockRightsChecker($id)
     {
         $user = new User();
 
         // Получим объект проверку
-        $checker = new IBlockRightsChecker();
+        $checker = new IBlockRightsChecker($id, $user);
         // Запускаем
-        $checker->run();
-
+        return $checker->run();
     }
 }
