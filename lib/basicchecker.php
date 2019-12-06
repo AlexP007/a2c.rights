@@ -7,7 +7,7 @@ namespace A2c\Rights;
  * Class Editor
  * @package A2c\Rights\Editor
  */
-abstract class BasicRightsChecker
+abstract class BasicChecker
 {
     protected $list;
     protected $user;

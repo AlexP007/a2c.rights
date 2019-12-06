@@ -2,10 +2,10 @@
 
 namespace A2c\Rights\Editor;
 
-use A2c\Rights\BasicRightsChecker;
+use A2c\Rights\BasicChecker;
 use A2c\Rights\User;
 
-class ContextMenuEditor extends BasicRightsChecker
+class ContextMenuEditor extends BasicChecker
 {
     public function __construct(array $data, User $user)
     {

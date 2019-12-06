@@ -3,7 +3,6 @@
 
 namespace A2c\Rights\RightsChecker;
 
-use A2c\Rights\BasicRightsChecker;
 
 /**
  * Class IBlockRightsChecker
@@ -20,7 +19,8 @@ class IBlockRightsChecker extends BasicRightsChecker
     {
         global $APPLICATION;
 
-        if ($this->user->couldDelete()) {
+        if ($this->user->couldDelete()
+            || in_array($this->iBlockId, $this->excluded)) {
             return true;
         }
         $APPLICATION->ThrowException('Вы не можете удалить этот элемент');

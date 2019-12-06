@@ -57,7 +57,7 @@ class EventFactory
         $user = new User();
 
         // Получим объект проверку
-        $checker = new IBlockRightsChecker($id, $user);
+        $checker = new IBlockRightsChecker(['id' => $id], $user);
         // Запускаем
         return $checker->run();
     }

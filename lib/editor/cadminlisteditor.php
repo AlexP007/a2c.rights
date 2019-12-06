@@ -2,12 +2,12 @@
 
 namespace A2c\Rights\Editor;
 
-use A2c\Rights\BasicRightsChecker;
+use A2c\Rights\BasicChecker;
 use A2c\Rights\User;
 use CAdminList;
 use CAdminListRow;
 
-class CAdminListEditor extends BasicRightsChecker
+class CAdminListEditor extends BasicChecker
 {
     public function __construct(CAdminList $list, User $user)
     {
